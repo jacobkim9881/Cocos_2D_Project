@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b3dd16f5-9648-4780-bf19-23d316f5afc6",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 49,
+  "height": 59,
+  "platformSettings": {},
+  "subMetas": {
+    "galletcity-building1": {
+      "ver": "1.0.6",
+      "uuid": "eab72373-c71c-4ac4-a659-b13ca8ddf85b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b3dd16f5-9648-4780-bf19-23d316f5afc6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 49,
+      "height": 59,
+      "rawWidth": 49,
+      "rawHeight": 59,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
