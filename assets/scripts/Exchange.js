@@ -16,7 +16,7 @@ cc.Class({
         otherObjX: 0,
         startPoint: 0,
         endPoint: 0,
-        moveLimit: 40,
+        moveLimit: 80,
         isSwitched: false
         // foo: {
         //     // ATTRIBUTES:
@@ -54,6 +54,8 @@ cc.Class({
         e.stopPropagationImmediate();         
         let x1 = this.node
         this.startPoint = x1.x
+        this.endPoint = this.objToChange.x
+        //this.isSelected = true
     },
 
     setEvent(node) {
@@ -93,11 +95,12 @@ cc.Class({
         , x3 = this.startPoint
         , x4 = this.objToChange
         //.getLocation()
-        if (x1 !== x2) {
+        if (x1 < x2) {
             this.node.x ++
             this.objToChange.x --
         } else {
             this.isSwitched = false
+            //this.isSelected = false
         }
 /*
         if (x2.x > x1.x && x4.x > x3.x && x1 !== x2 && x3 !== x4) {
@@ -117,9 +120,10 @@ cc.Class({
     touchEnd() {                
         this.isTouched = false        
         let x2 = this.objToChange        
-        this.endPoint = x2.x
-        let diff = this.startPoint - this.node.x
+        //this.endPoint = x2.x
+        let diff = Math.abs(this.startPoint - this.node.x)
         console.log('diff: ', diff)
+        //console.log('end point: ', x2.x)
         if ( diff > this.moveLimit) this.isSwitched = true;
     },
 
