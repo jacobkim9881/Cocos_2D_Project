@@ -1371,6 +1371,8 @@
     "otherObjX": 0,
     "startPoint": 0,
     "endPoint": 0,
+    "moveLimit": 40,
+    "isSwitched": false,
     "_id": "e0sEDz2jJMZKbgYQjG+8zG"
   },
   {
@@ -1487,6 +1489,8 @@
     "otherObjX": 0,
     "startPoint": 0,
     "endPoint": 0,
+    "moveLimit": 40,
+    "isSwitched": false,
     "_id": "3cJFMgBh1DXblU8bIWBdvJ"
   },
   {

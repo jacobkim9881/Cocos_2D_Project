@@ -15,7 +15,9 @@ cc.Class({
         thisX: 0,
         otherObjX: 0,
         startPoint: 0,
-        endPoint: 0
+        endPoint: 0,
+        moveLimit: 40,
+        isSwitched: false
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -55,8 +57,8 @@ cc.Class({
     },
 
     setEvent(node) {
-        //node.on("touchstart", this.touchStart, this)
-        node.on("touchend", this.touchStart, this)
+        node.on("touchstart", this.touchStart, this)
+        node.on("touchend", this.touchEnd, this)
         node.on("touchmove", this.touchMove, this)
         node.on("touchcancel", this.touchEnd, this)
     },
@@ -64,15 +66,16 @@ cc.Class({
     touchMove(e) {        
        
        //location
-       console.log("cc.Node.EventType.TOUCH_MOVE called");
-       console.log(e.getLocation());
+       //console.log("cc.Node.EventType.TOUCH_MOVE called");
+       //console.log(e.getLocation());
        var w_pos = e.getLocation();//cc.Vec2 {x, y}
-       console.log(w_pos, w_pos.x, w_pos.y);
+       //console.log(w_pos, w_pos.x, w_pos.y);
 
       //How much has changed since the last touch;
        var delta = e.getDelta();//how much x and y have changed cc.Vec2(x, y)
-
+        //console.log('delta x: ', delta.x)
        this.node.x += delta.x;
+       this.objToChange.x -= delta.x
        this.node.y += delta.y;
     },
     
@@ -84,19 +87,27 @@ cc.Class({
 
     exchange(dt) {        
         //let x1 = this.startPoint
-        let x1 = this.node
+        let x1 = this.node.x
         //.getLocation()
         , x2 = this.endPoint
         , x3 = this.startPoint
         , x4 = this.objToChange
         //.getLocation()
+        if (x1 !== x2) {
+            this.node.x ++
+            this.objToChange.x --
+        } else {
+            this.isSwitched = false
+        }
+/*
         if (x2.x > x1.x && x4.x > x3.x && x1 !== x2 && x3 !== x4) {
             console.log('position x1: ', x1)
             console.log('position x2: ', x2)
             this.node.x++
             this.objToChange.node.x--
-        } 
-        /*else {
+        }
+         
+        else {
             this.node.x--
             this.objToChange.node.x++
         }
@@ -107,6 +118,9 @@ cc.Class({
         this.isTouched = false        
         let x2 = this.objToChange        
         this.endPoint = x2.x
+        let diff = this.startPoint - this.node.x
+        console.log('diff: ', diff)
+        if ( diff > this.moveLimit) this.isSwitched = true;
     },
 
     start () {
@@ -114,10 +128,16 @@ cc.Class({
     },
 
     update: function (dt) {
+/*
         if (this.getPlayerDistance() < this.pickRadius) {            
-            this.exchange(dt);
+            //this.exchange(dt);
             return;
         }
-        
+        */
+        if (this.isSwitched) {         
+            console.log('switched')   
+            this.exchange(dt);            
+            return;
+        }
     },
 });
