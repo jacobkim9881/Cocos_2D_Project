@@ -18,21 +18,6 @@ cc.Class({
         endPoint: 0,
         moveLimit: 80,
         isSwitched: false
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -88,39 +73,18 @@ cc.Class({
     },
 
     exchange(dt) {        
-        //let x1 = this.startPoint
         let x1 = this.node.x
-        //.getLocation()
         , x2 = this.endPoint
-        , x3 = this.startPoint
-        , x4 = this.objToChange
-        //.getLocation()
         if (x1 < x2) {
             this.node.x ++
             this.objToChange.x --
         } else {
             this.isSwitched = false
-            //this.isSelected = false
         }
-/*
-        if (x2.x > x1.x && x4.x > x3.x && x1 !== x2 && x3 !== x4) {
-            console.log('position x1: ', x1)
-            console.log('position x2: ', x2)
-            this.node.x++
-            this.objToChange.node.x--
-        }
-         
-        else {
-            this.node.x--
-            this.objToChange.node.x++
-        }
-*/
     },
     
     touchEnd() {                
         this.isTouched = false        
-        let x2 = this.objToChange        
-        //this.endPoint = x2.x
         let diff = Math.abs(this.startPoint - this.node.x)
         console.log('diff: ', diff)
         //console.log('end point: ', x2.x)
@@ -132,12 +96,6 @@ cc.Class({
     },
 
     update: function (dt) {
-/*
-        if (this.getPlayerDistance() < this.pickRadius) {            
-            //this.exchange(dt);
-            return;
-        }
-        */
         if (this.isSwitched) {         
             console.log('switched')   
             this.exchange(dt);            
