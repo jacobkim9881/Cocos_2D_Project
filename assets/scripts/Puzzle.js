@@ -13,16 +13,17 @@ cc.Class({
         default: null,
         type: cc.Prefab
     },
+    puzzle: {},
     width: 40
     },
 
     onLoad () {
-        const width = this.width
+        const {width, puzzle} = this
         for(let i = -1; i < 3; i++) {
             for(let j = -1; j < 3; j++) {
             let x = i * width + width
             , y = j * width + width    
-            
+            puzzle[`${i}, ${j}`] = 'boar'
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
             this.node.addChild(newPiece);
@@ -38,6 +39,7 @@ cc.Class({
 
     start () {
         console.log(this.width)
+        console.log('obj: ', this.puzzle)
 console.log(this.puzzlePiece)
     },
 
