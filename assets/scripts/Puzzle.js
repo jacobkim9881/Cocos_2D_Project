@@ -13,7 +13,13 @@ cc.Class({
         default: null,
         type: cc.Prefab
     },
-    puzzle: {},
+    puzzle: {get () {
+                 return this;
+             },
+             set (key, value) {
+                 this.key = value;
+             }
+            },
     width: 40
     },
 
@@ -23,6 +29,7 @@ cc.Class({
             for(let j = -1; j < 3; j++) {
             let x = i * width + width
             , y = j * width + width    
+            puzzle[`${i}, ${j}`] = {}
             puzzle[`${i}, ${j}`] = 'boar'
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
