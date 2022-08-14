@@ -23,7 +23,9 @@ cc.Class({
     width: 40
     },
 
-    onLoad () {
+    onLoad () {        
+        cc.director.getPhysicsManager().enabled = true;
+        cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
         const {width, puzzle} = this
         for(let i = -1; i < 3; i++) {
             for(let j = -1; j < 3; j++) {
@@ -32,8 +34,8 @@ cc.Class({
             puzzle[`${i}, ${j}`] = {}
             puzzle[`${i}, ${j}`] = 'boar'
             var newPiece = cc.instantiate(this.puzzlePiece);
-            newPiece.setPosition(this.getNewPiecePosition(x, y));
-            this.node.addChild(newPiece);
+            //newPiece.setPosition(this.getNewPiecePosition(x, y));
+            //this.node.addChild(newPiece);
 
             }
         }
