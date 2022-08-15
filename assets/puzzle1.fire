@@ -1053,7 +1053,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 25
@@ -1175,7 +1175,7 @@
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 10,
       "y": 0
     },
     "_angularVelocity": 0,
@@ -1196,8 +1196,8 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
+    "_friction": 0.00001,
+    "_restitution": 0.01,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
@@ -1217,7 +1217,7 @@
       "__id__": 24
     },
     "asset": {
-      "__uuid__": "fcd013af-4932-4538-a199-d687ab783828"
+      "__uuid__": "2a46e061-e332-4d6a-8960-3564a9421663"
     },
     "fileId": "",
     "sync": false
@@ -1275,7 +1275,7 @@
     },
     "_enabled": true,
     "puzzlePiece": {
-      "__uuid__": "fcd013af-4932-4538-a199-d687ab783828"
+      "__uuid__": "2a46e061-e332-4d6a-8960-3564a9421663"
     },
     "width": 70,
     "_id": "2b8NSxbBRPzrBRbQvgrPOM"
