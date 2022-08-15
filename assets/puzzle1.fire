@@ -1179,7 +1179,7 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": false,
+    "_fixedRotation": true,
     "enabledContactListener": false,
     "bullet": false,
     "awakeOnLoad": true,
@@ -1194,7 +1194,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 1,
+    "_density": 100,
     "_sensor": false,
     "_friction": 0.00001,
     "_restitution": 0.01,
@@ -1217,7 +1217,7 @@
       "__id__": 24
     },
     "asset": {
-      "__uuid__": "2a46e061-e332-4d6a-8960-3564a9421663"
+      "__uuid__": "c6ac2e8e-8574-467a-aa5a-856f88d94e6a"
     },
     "fileId": "",
     "sync": false
@@ -1275,9 +1275,9 @@
     },
     "_enabled": true,
     "puzzlePiece": {
-      "__uuid__": "2a46e061-e332-4d6a-8960-3564a9421663"
+      "__uuid__": "c6ac2e8e-8574-467a-aa5a-856f88d94e6a"
     },
-    "width": 70,
+    "width": 45,
     "_id": "2b8NSxbBRPzrBRbQvgrPOM"
   }
 ]

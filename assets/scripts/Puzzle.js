@@ -20,17 +20,18 @@ cc.Class({
                  this.key = value;
              }
             },
-    width: 40
+    width: 15
     },
 
     onLoad () {        
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
         const {width, puzzle} = this
-        for(let i = -3; i < 0; i++) {
-            for(let j = -1; j < 3; j++) {
-            let x = i * width + width
-            , y = j * width + width    
+        console.log(typeof width)
+        for(let i = -4; i < 4; i++) {
+            for(let j = -1; j < 7; j++) {
+            let x = i * width 
+            , y = j * width     
             puzzle[`${i}, ${j}`] = {}
             puzzle[`${i}, ${j}`] = 'boar'
             var newPiece = cc.instantiate(this.puzzlePiece);
