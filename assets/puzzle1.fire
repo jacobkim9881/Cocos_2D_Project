@@ -1174,7 +1174,7 @@
     "_type": 2,
     "_allowSleep": true,
     "_gravityScale": 1,
-    "_linearDamping": 0,
+    "_linearDamping": 10,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
@@ -1197,10 +1197,10 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 100,
+    "_density": 1,
     "_sensor": false,
     "_friction": 0.00001,
-    "_restitution": 0.01,
+    "_restitution": 1,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
@@ -1220,7 +1220,7 @@
       "__id__": 24
     },
     "asset": {
-      "__uuid__": "69365510-2725-4b0d-a64e-52e7ad0757dc"
+      "__uuid__": "6459a13b-7207-48c8-9a0c-f24c3f051b48"
     },
     "fileId": "",
     "sync": false
@@ -1455,7 +1455,7 @@
     },
     "_enabled": true,
     "puzzlePiece": {
-      "__uuid__": "10db6edb-90cf-4a14-853d-036726b26c90"
+      "__uuid__": "c55b87d8-c172-4867-a9e8-7a0ef615696d"
     },
     "width": 45,
     "_id": "2b8NSxbBRPzrBRbQvgrPOM"
