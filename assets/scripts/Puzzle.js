@@ -29,9 +29,9 @@ cc.Class({
         const {width, puzzle} = this
         console.log(typeof width)
         for(let i = -4; i < 4; i++) {
-            for(let j = -1; j < 7; j++) {
-            let x = i * width 
-            , y = j * width     
+            for(let j = -7; j < 10; j++) {
+            let x = i * width + width/2
+            , y = j * width + + width/2     
             puzzle[`${i}, ${j}`] = {}
             puzzle[`${i}, ${j}`] = 'boar'
             var newPiece = cc.instantiate(this.puzzlePiece);

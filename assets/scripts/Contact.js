@@ -9,15 +9,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        beforePosition: {
-                 get () {
-                     return this;
-                 },
-                 set (value) {
-                 //    this = value;
-                 }
-
-        }
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -35,23 +26,17 @@ cc.Class({
         // },
     },
 
-    onLoad () {
-        this.node.on("touchend", this.touchEnd, this)
-    },
+    // LIFE-CYCLE CALLBACKS:
 
-    touchEnd() {
-    this.node.destroy();
-    },
+    // onLoad () {},
 
+    onBeginContact: function (contact, selfCollider, otherCollider) {
+        console.log(contact, selfCollider, otherCollider)
+        },
+    
     start () {
-        
+
     },
 
-    update (dt) {
-        /*
-        let currentPosition = this.node.getPosition()
-        , beforePosition = this.beforePosition
-        console.log(currentPosition)
-        setTimeout(() => {currentPosition = beforePosition}, 10)*/
-    },
+    // update (dt) {},
 });

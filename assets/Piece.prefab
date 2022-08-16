@@ -58,14 +58,14 @@
       "ctor": "Float64Array",
       "array": [
         23.68,
-        0,
+        426.152,
         0,
         0,
         0,
         0,
         1,
-        3,
-        3,
+        2.9,
+        2.9,
         1
       ]
     },
@@ -135,7 +135,7 @@
     "_type": 2,
     "_allowSleep": true,
     "_gravityScale": 1,
-    "_linearDamping": 0,
+    "_linearDamping": 10,
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
@@ -143,8 +143,8 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": false,
-    "enabledContactListener": false,
+    "_fixedRotation": true,
+    "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": ""
@@ -158,7 +158,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 10,
+    "_density": 100,
     "_sensor": false,
     "_friction": 0.00001,
     "_restitution": 0.01,
