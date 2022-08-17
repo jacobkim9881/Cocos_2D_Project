@@ -26,23 +26,27 @@ cc.Class({
     onLoad () {        
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
-        const {width, puzzle} = this
+        const {width} = this
+        , puzzle = {}
         console.log(typeof width)
         let num = 0
         for(let i = -4; i < 4; i++) {
             for(let j = -7; j < 10; j++) {
             let x = i * width + width/2
             , y = j * width + width/2     
-            puzzle[`${i}, ${j}`] = {}
-            puzzle[`${i}, ${j}`] = {id: num}
-            puzzle[`${i}, ${j}`] = {name: 'boar'}            
-            num++
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
             this.node.addChild(newPiece);
+            console.log('new piece: ', newPiece)
+            puzzle[`${i}, ${j}`] = {}
+            puzzle[`${i}, ${j}`].id = uuid
+            puzzle[`${i}, ${j}`].name = 'boar'      
+            puzzle[`${i}, ${j}`].touched = false      
+            num++
                 
             }
         }
+        cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
     },
 
     getNewPiecePosition(x, y) {

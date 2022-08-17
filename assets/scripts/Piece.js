@@ -9,6 +9,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        isTouched: false,
         beforePosition: {
                  get () {
                      return this;
@@ -35,12 +36,34 @@ cc.Class({
         // },
     },
 
-    onLoad () {
-        this.node.on("touchend", this.touchEnd, this)
+    onLoad () {        
+        this.setEvent(this.node)
     },
+    setEvent(node) {
+        node.on("touchend", this.touchStart, this)
+        node.on("touchmove", this.touchMove, this)
+        node.on("touchcancel", this.touchEnd, this)
+    },   
+    touchMove(e) {        
+       //console.log(e)
+       let puzzle = cc.sys.localStorage.getItem('puzzle') 
+       console.log(puzzle)
+
+        //location
+        console.log("cc.Node.EventType.TOUCH_MOVE called");
+        console.log(e.getLocation());
+        var w_pos = e.getLocation();//cc.Vec2 {x, y}
+        console.log(w_pos, w_pos.x, w_pos.y);
+ 
+       //How much has changed since the last touch;
+        var delta = e.getDelta();//how much x and y have changed cc.Vec2(x, y)
+ 
+        this.node.x += delta.x;
+        this.node.y += delta.y;
+     },
 
     touchEnd() {
-    this.node.destroy();
+    //this.node.destroy();
     },
 
     start () {

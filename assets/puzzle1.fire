@@ -1161,6 +1161,7 @@
       "__id__": 24
     },
     "_enabled": true,
+    "isTouched": false,
     "_id": "f2hKom4TtHTpiUEztxyQ5P"
   },
   {
@@ -1338,6 +1339,7 @@
       "__id__": 30
     },
     "_enabled": true,
+    "isTouched": false,
     "_id": "4ceYpMFWRC+Z9QyuaSSqcs"
   },
   {
