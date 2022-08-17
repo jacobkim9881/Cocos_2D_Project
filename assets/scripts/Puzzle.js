@@ -28,16 +28,19 @@ cc.Class({
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
         const {width, puzzle} = this
         console.log(typeof width)
+        let num = 0
         for(let i = -4; i < 4; i++) {
             for(let j = -7; j < 10; j++) {
             let x = i * width + width/2
             , y = j * width + width/2     
             puzzle[`${i}, ${j}`] = {}
-            puzzle[`${i}, ${j}`] = 'boar'
+            puzzle[`${i}, ${j}`] = {id: num}
+            puzzle[`${i}, ${j}`] = {name: 'boar'}            
+            num++
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
             this.node.addChild(newPiece);
-
+                
             }
         }
     },
