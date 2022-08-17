@@ -38,14 +38,20 @@ cc.Class({
             newPiece.setPosition(this.getNewPiecePosition(x, y));
             this.node.addChild(newPiece);
             console.log('new piece: ', newPiece)
+            /*
             puzzle[`${i}, ${j}`] = {}
-            puzzle[`${i}, ${j}`].id = uuid
+            puzzle[`${i}, ${j}`].id = newPiece.uuid
             puzzle[`${i}, ${j}`].name = 'boar'      
             puzzle[`${i}, ${j}`].touched = false      
+            */            
+            puzzle[newPiece.uuid] = {}
+            puzzle[newPiece.uuid].name = 'boar'      
+            puzzle[newPiece.uuid].touched = false      
             num++
                 
             }
         }
+        console.log('puzzle obj: ', puzzle)
         cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
     },
 
@@ -56,7 +62,7 @@ cc.Class({
 
     start () {
         console.log(this.width)
-        console.log('obj: ', this.puzzle)
+        //console.log('obj: ', this.puzzle)
 console.log(this.puzzlePiece)
     },
 

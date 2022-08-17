@@ -40,10 +40,15 @@ cc.Class({
         this.setEvent(this.node)
     },
     setEvent(node) {
-        node.on("touchend", this.touchStart, this)
+        node.on("touchend", this.touchEnd, this)
         node.on("touchmove", this.touchMove, this)
-        node.on("touchcancel", this.touchEnd, this)
+        //node.on("touchcancel", this.touchE, this)
     },   
+
+    touchStart(e) {
+
+    },
+
     touchMove(e) {        
        //console.log(e)
        let puzzle = cc.sys.localStorage.getItem('puzzle') 
@@ -63,6 +68,13 @@ cc.Class({
      },
 
     touchEnd() {
+        let puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
+        console.log(this.node.uuid)
+        let uuid = this.node.uuid
+        puzzle[uuid]['touched'] = true       
+        console.log(puzzle[uuid]) 
+        console.log('puzzle obj: ', puzzle)
+        cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
     //this.node.destroy();
     },
 
