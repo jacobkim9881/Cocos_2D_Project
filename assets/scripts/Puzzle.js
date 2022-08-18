@@ -9,6 +9,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        time: 0,
         puzzlePiece: {
         default: null,
         type: cc.Prefab
@@ -36,7 +37,7 @@ cc.Class({
             , y = j * width + width/2     
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
-            this.node.addChild(newPiece);
+            //this.node.addChild(newPiece);
             console.log('new piece: ', newPiece)
             /*
             puzzle[`${i}, ${j}`] = {}
@@ -61,10 +62,28 @@ cc.Class({
     },
 
     start () {
-        console.log(this.width)
+        console.log(this.width)        
+        cc.sys.localStorage.setItem('time-check', 0)
         //console.log('obj: ', this.puzzle)
 console.log(this.puzzlePiece)
     },
 
-    // update (dt) {},
+     update (dt) {
+        //let time = cc.sys.localStorage.getItem('time') ?  parseInt(cc.sys.localStorage.getItem('time')) + dt : 0        
+        //console.log('time', time)
+        //cc.sys.localStorage.setItem('time', time)
+        this.time += dt
+        let everyHalfSecond = Math.trunc(this.time * 100) % 50 === 1 ? true : false
+        , timeChecked = cc.sys.localStorage.getItem('time-check')
+        //console.log(everyHalfSecond)
+        //console.log('time', this.time) 
+        //console.log(timeChecked === '0')
+        if (everyHalfSecond && timeChecked === '0') {
+            //console.log(timeChecked)
+            cc.sys.localStorage.setItem('time-check', 1)
+        } else if (!everyHalfSecond && timeChecked === '1') {
+            //console.log(timeChecked)
+            cc.sys.localStorage.setItem('time-check', 0)
+        }
+     },
 });
