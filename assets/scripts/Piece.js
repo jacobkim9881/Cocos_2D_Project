@@ -10,12 +10,14 @@ cc.Class({
 
     properties: {
         isTouched: false,
+        isLocationAdded: false,
         beforePosition: {
                  get () {
                      return this;
                  },
                  set (value) {
-                 //    this = value;
+                     this.x = value.x;
+                     this.y = value.y;
                  }
 
         }
@@ -82,7 +84,31 @@ cc.Class({
         
     },
 
-    update (dt) {
+    update (dt) {        
+        //console.log(this.node.getPosition())
+        let timeChecked = cc.sys.localStorage.getItem('time-check')
+        , isLocationAdded = this
+        if (timeChecked === '1') {
+            let beforePosition = this
+            , currentPosition = this.node.getPosition()
+            if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !isLocationAdded) {
+                let puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
+        //console.log(this.node.uuid)
+        let uuid = this.node.uuid
+        //puzzle[uuid]['location'] = currentPosition
+                isLocationAdded = false
+            } else {
+                console.log(beforePosition.x, currentPosition.x)
+                console.log(beforePosition.y, currentPosition.y)
+                console.log(beforePosition.x === currentPosition.x)
+                console.log(beforePosition.y === currentPosition.y)                
+                this.beforePosition = currentPosition
+                
+            }
+            //console.log(this.beforePosition)
+        } 
+        //console.log(this.beforePosition)
+        
         /*
         let currentPosition = this.node.getPosition()
         , beforePosition = this.beforePosition

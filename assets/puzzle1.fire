@@ -1456,6 +1456,7 @@
       "__id__": 2
     },
     "_enabled": true,
+    "time": 0,
     "puzzlePiece": {
       "__uuid__": "c55b87d8-c172-4867-a9e8-7a0ef615696d"
     },

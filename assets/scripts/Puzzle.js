@@ -38,7 +38,7 @@ cc.Class({
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(x, y));
             //this.node.addChild(newPiece);
-            console.log('new piece: ', newPiece)
+            //console.log('new piece: ', newPiece)
             /*
             puzzle[`${i}, ${j}`] = {}
             puzzle[`${i}, ${j}`].id = newPiece.uuid
