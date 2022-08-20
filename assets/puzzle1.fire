@@ -1162,6 +1162,7 @@
     },
     "_enabled": true,
     "isTouched": false,
+    "isLocationAdded": false,
     "_id": "f2hKom4TtHTpiUEztxyQ5P"
   },
   {
@@ -1340,6 +1341,7 @@
     },
     "_enabled": true,
     "isTouched": false,
+    "isLocationAdded": false,
     "_id": "4ceYpMFWRC+Z9QyuaSSqcs"
   },
   {

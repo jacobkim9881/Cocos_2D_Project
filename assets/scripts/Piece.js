@@ -84,7 +84,32 @@ cc.Class({
         
     },
 
-    update (dt) {        
+    moveLogic(x, y, x1, y1, x2, y2, x3, y3) {
+        const xMin = 22.5
+        , xMax = -157.5
+        , yMin = -292.5
+        , yMax = 427.5
+        , aCell = 45
+        , puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
+        , Location1 = puzzle[`${x1}, ${y1}`]
+        , Location2 = puzzle[`${x2}, ${y2}`]
+        , Location3 = puzzle[`${x3}, ${y3}`]
+
+        if (Location1.isEmpty) {
+
+        } else if (Location2.isEmpty) {
+
+        } else if (Location3.isEmpty) {
+
+        } 
+
+        switch(x, y) {
+
+        }
+
+    },
+
+    update (dt) {                
         //console.log(this.node.getPosition())
         let timeChecked = cc.sys.localStorage.getItem('time-check')
         , isLocationAdded = this
@@ -92,6 +117,7 @@ cc.Class({
             let beforePosition = this
             , currentPosition = this.node.getPosition()
             if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !isLocationAdded) {
+                console.log(currentPosition.y, currentPosition.x)
                 let puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
         //console.log(this.node.uuid)
         let uuid = this.node.uuid

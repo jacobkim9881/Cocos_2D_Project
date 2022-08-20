@@ -35,19 +35,22 @@ cc.Class({
             for(let j = -7; j < 10; j++) {
             let x = i * width + width/2
             , y = j * width + width/2     
-            var newPiece = cc.instantiate(this.puzzlePiece);
-            newPiece.setPosition(this.getNewPiecePosition(x, y));
+            //var newPiece = cc.instantiate(this.puzzlePiece);
+            //newPiece.setPosition(this.getNewPiecePosition(x, y));
             //this.node.addChild(newPiece);
             //console.log('new piece: ', newPiece)
-            /*
-            puzzle[`${i}, ${j}`] = {}
-            puzzle[`${i}, ${j}`].id = newPiece.uuid
-            puzzle[`${i}, ${j}`].name = 'boar'      
-            puzzle[`${i}, ${j}`].touched = false      
-            */            
-            puzzle[newPiece.uuid] = {}
-            puzzle[newPiece.uuid].name = 'boar'      
-            puzzle[newPiece.uuid].touched = false      
+           if(i === 0 && j === -7) {
+            var newPiece = cc.instantiate(this.puzzlePiece);
+            newPiece.setPosition(this.getNewPiecePosition(x, y));
+            this.node.addChild(newPiece);
+           }
+
+            puzzle[`${x}, ${y}`] = {}
+            puzzle[`${x}, ${y}`].name = 'boar'      
+            puzzle[`${x}, ${y}`].touched = false      
+            puzzle[`${x}, ${y}`].isEmpty = true      
+            puzzle[`${x}, ${y}`].uuid = 
+            puzzle[`${x}, ${y}`].position = {x, y}      
             num++
                 
             }
