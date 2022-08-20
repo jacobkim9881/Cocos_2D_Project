@@ -1173,7 +1173,7 @@
       "__id__": 24
     },
     "_enabled": true,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 10,
@@ -1222,7 +1222,7 @@
       "__id__": 24
     },
     "asset": {
-      "__uuid__": "6459a13b-7207-48c8-9a0c-f24c3f051b48"
+      "__uuid__": "a90bee48-ce38-411e-babe-9c84ec57ab0d"
     },
     "fileId": "",
     "sync": false
@@ -1460,7 +1460,7 @@
     "_enabled": true,
     "time": 0,
     "puzzlePiece": {
-      "__uuid__": "c55b87d8-c172-4867-a9e8-7a0ef615696d"
+      "__uuid__": "a90bee48-ce38-411e-babe-9c84ec57ab0d"
     },
     "width": 45,
     "_id": "2b8NSxbBRPzrBRbQvgrPOM"

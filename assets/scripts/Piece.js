@@ -84,20 +84,23 @@ cc.Class({
         
     },
 
-    moveLogic(x, y, x1, y1, x2, y2, x3, y3) {
+    moveLogic(x, y) {
         const xMin = 22.5
         , xMax = -157.5
         , yMin = -292.5
-        , yMax = 427.5
+        , yMax = 427.5        
         , aCell = 45
+        , y1 = y - aCell
+        , x2 = x + aCell
+        , x3 = x - aCell
         , puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
-        , Location1 = puzzle[`${x1}, ${y1}`]
-        , Location2 = puzzle[`${x2}, ${y2}`]
-        , Location3 = puzzle[`${x3}, ${y3}`]
+        , bottom = puzzle[`${x}, ${y1}`]
+        , right = puzzle[`${x2}, ${y}`]
+        , Location3 = puzzle[`${x3}, ${y}`]
 
-        if (Location1.isEmpty) {
-
-        } else if (Location2.isEmpty) {
+        if (bottom.isEmpty) {
+//move bottom
+        } else if (right.isEmpty) {
 
         } else if (Location3.isEmpty) {
 
