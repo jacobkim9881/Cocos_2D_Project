@@ -10,7 +10,6 @@ cc.Class({
 
     properties: {
         isTouched: false,
-        isLocationAdded: false,
         isMoving: false,
         targetPos: {
             get () {
@@ -101,49 +100,19 @@ cc.Class({
     },
 
     moveLogic(x, y) {
-        const xMin = 22.5
-        , xMax = -157.5
-        , yMin = -292.5
-        , yMax = 427.5        
-        , aCell = 45
-        , y1 = y - aCell
-        , x2 = x + aCell
-        , x3 = x - aCell
-        , puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
-        , bottom = puzzle[`${x}, ${y1}`]
-        , right = puzzle[`${x2}, ${y}`]
-        , Location3 = puzzle[`${x3}, ${y}`]
-        console.log('x: ', x, 'y: ', y, 'x2: ', x2, 'y1: ', y1)
-        console.log(bottom, right, Location3)
+        const puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
+        , bottom = puzzle[`${x}, ${y}`]
+        console.log('x: ', x, 'y: ', y)
+        console.log(bottom)
 
         if (bottom && bottom.isEmpty) {
             console.log(bottom)
-            this.isMoving = true
-            this.targetPos.x = bottom.position.x
-            this.targetPos.y = bottom.position.y
-//move bottom
-        } else if (right && right.isEmpty) {
-            console.log(right)
             console.log(this.targetPos)
-            this.isMoving = true
-            this.targetPos = right.position
-            console.log('is moving: ', this.isMoving)
+            this.targetPos = bottom.position
             return true
-            /*
-            this.targetPos.x = right.position.x
-            this.targetPos.y = right.position.y
-            */
-        } else if (Location3 && Location3.isEmpty) {
-            console.log(Location3)
-            this.isMoving = true
-            this.targetPos.x = Location3.position.x
-            this.targetPos.y = Location3.position.y
-        } 
-
-        switch(x, y) {
-
+        } else {
+            return false
         }
-
     },
 
     moveObj(x, y) {
@@ -152,13 +121,13 @@ cc.Class({
         console.log('diffX: ', diffX, 'diffY: ', diffY)
         //console.log('this.node.x: ', this.node.x)
         if (diffX > 0) {
-            x++
+            //x++
         } else if (diffX < 0) {
-            x--
+            //x--
         } 
 
         if (diffY > 0) {
-            y++
+            //y++
         } 
 
         else if (diffY === 0 && diffX === 0) {
@@ -168,23 +137,22 @@ cc.Class({
     },
 
     update (dt) {                
-        //console.log(this.node.getPosition())
         let timeChecked = cc.sys.localStorage.getItem('time-check')
-        , isLocationAdded = this.isLocationAdded
         if (timeChecked === '1') {
             let beforePosition = this
             , currentPosition = this.node.getPosition()
             console.log(isLocationAdded)
             console.log('is moving: ', this.isMoving, !this.isMoving)
-            if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !isLocationAdded && !this.isMoving) {
+            if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !isLocationAdded && !this.isMoving) {                
+        const aCell = 45
+        , y1 = currentPosition.y - aCell
+        , x2 = currentPosition.x + aCell
+        , x3 = currentPosition.x - aCell
                 const moveLogic = this.moveLogic
-                this.isMoving = moveLogic(currentPosition.x, currentPosition.y)
+                this.isMoving = moveLogic(currentPosition.x, y1)
+                ||  moveLogic(x2, currentPosition.y)
+                ||  moveLogic(x3, currentPosition.y)
                 console.log(currentPosition.y, currentPosition.x)
-                let puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
-        //console.log(this.node.uuid)
-        let uuid = this.node.uuid
-        //puzzle[uuid]['location'] = currentPosition
-                isLocationAdded = false
             } else if(this.isMoving) {
                 const moveObj = this.moveObj
                 moveObj(currentPosition.x, currentPosition.y)
@@ -198,12 +166,5 @@ cc.Class({
             }
             //console.log(this.beforePosition)
         } 
-        //console.log(this.beforePosition)
-        
-        /*
-        let currentPosition = this.node.getPosition()
-        , beforePosition = this.beforePosition
-        console.log(currentPosition)
-        setTimeout(() => {currentPosition = beforePosition}, 10)*/
     },
 });
