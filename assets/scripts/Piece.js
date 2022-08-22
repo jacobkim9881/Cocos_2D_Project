@@ -115,18 +115,31 @@ cc.Class({
         }
     },
 
-    moveObj(x, y) {
+    moveObj(x, y, node) {
         const diffX = this.targetPos.x - x
         ,diffY = this.targetPos.y - y
         console.log('diffX: ', diffX, 'diffY: ', diffY)
         //console.log('this.node.x: ', this.node.x)
+        //board.position = cc.v2(board.position.x, curPosY + BOARD_SPEED[this.curLevel]);
+        //console.log('this position', this.node.positioin)
+        //this.position = cc.v2(x + 10, y)
+        //console.log('this position', this.positioin)
+        //console.log('this.node: ', this.node)
+        console.log('this.node: ', node)
+        node.x = x + 10
         if (diffX > 0) {
+            //this.setPosition(new cc.Point(x + 1, y))
             //x++
         } else if (diffX < 0) {
+            //this.setPosition(new cc.Point(x - 1, y))
             //x--
         } 
 
         if (diffY > 0) {
+            //this.setPosition(new cc.Point(x, y + 1))
+            //y++
+        } else if (diffY < 0) {
+            //this.setPosition(new cc.Point(x, y - 1))
             //y++
         } 
 
@@ -139,11 +152,10 @@ cc.Class({
     update (dt) {                
         let timeChecked = cc.sys.localStorage.getItem('time-check')
         if (timeChecked === '1') {
-            let beforePosition = this
+            let beforePosition = this.beforePosition
             , currentPosition = this.node.getPosition()
-            console.log(isLocationAdded)
             console.log('is moving: ', this.isMoving, !this.isMoving)
-            if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !isLocationAdded && !this.isMoving) {                
+            if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !this.isMoving) {                
         const aCell = 45
         , y1 = currentPosition.y - aCell
         , x2 = currentPosition.x + aCell
@@ -155,7 +167,7 @@ cc.Class({
                 console.log(currentPosition.y, currentPosition.x)
             } else if(this.isMoving) {
                 const moveObj = this.moveObj
-                moveObj(currentPosition.x, currentPosition.y)
+                moveObj(currentPosition.x, currentPosition.y, this.node)
             } else {                
                 console.log(beforePosition.x, currentPosition.x)
                 console.log(beforePosition.y, currentPosition.y)
