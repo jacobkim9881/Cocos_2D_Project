@@ -120,14 +120,22 @@ cc.Class({
         ,diffY = this.targetPos.y - y
         console.log('diffX: ', diffX, 'diffY: ', diffY)
         //node.x = node.x + dt 
-        node.runAction(cc.moveBy(4, cc.winSize.width * 0.5, 0))
-        if (diffX > 0) {            
-            
+        if (Math.abs(diffX) < 1) {        
+            node.x = node.x + diffX 
+        } else {
+            node.runAction(cc.moveBy(4, diffX/2, 0))
+        }
+        /*
+        if (diffX > 0) {                        
+            node.runAction(cc.moveBy(4, 45, 0))
+            //node.runAction(cc.moveBy(4, cc.winSize.width * 0.5, 0))
         } else if (diffX < 0) {
+            node.runAction(cc.moveBy(4, -45, 0))
+            //node.runAction(cc.moveBy(4, cc.winSize.width * - 0.5, 0))
             //this.setPosition(new cc.Point(x - 1, y))
             //x--
         } 
-
+*/
         if (diffY > 0) {
             //this.setPosition(new cc.Point(x, y + 1))
             //y++
