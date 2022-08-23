@@ -27,6 +27,7 @@ cc.Class({
     onLoad () {        
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
+        cc.director.getScheduler().setTimeScale(5)
         const {width} = this
         , puzzle = {}
         console.log(typeof width)

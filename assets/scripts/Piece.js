@@ -115,21 +115,14 @@ cc.Class({
         }
     },
 
-    moveObj(x, y, node) {
+    moveObj(x, y, node, dt) {
         const diffX = this.targetPos.x - x
         ,diffY = this.targetPos.y - y
         console.log('diffX: ', diffX, 'diffY: ', diffY)
-        //console.log('this.node.x: ', this.node.x)
-        //board.position = cc.v2(board.position.x, curPosY + BOARD_SPEED[this.curLevel]);
-        //console.log('this position', this.node.positioin)
-        //this.position = cc.v2(x + 10, y)
-        //console.log('this position', this.positioin)
-        //console.log('this.node: ', this.node)
-        console.log('this.node: ', node)
-        node.x = x + 10
-        if (diffX > 0) {
-            //this.setPosition(new cc.Point(x + 1, y))
-            //x++
+        //node.x = node.x + dt 
+        node.runAction(cc.moveBy(4, cc.winSize.width * 0.5, 0))
+        if (diffX > 0) {            
+            
         } else if (diffX < 0) {
             //this.setPosition(new cc.Point(x - 1, y))
             //x--
@@ -167,7 +160,7 @@ cc.Class({
                 console.log(currentPosition.y, currentPosition.x)
             } else if(this.isMoving) {
                 const moveObj = this.moveObj
-                moveObj(currentPosition.x, currentPosition.y, this.node)
+                moveObj(currentPosition.x, currentPosition.y, this.node, dt)
             } else {                
                 console.log(beforePosition.x, currentPosition.x)
                 console.log(beforePosition.y, currentPosition.y)
