@@ -52,8 +52,8 @@ cc.Class({
         this.setEvent(this.node)
     },
     setEvent(node) {
-        node.on("touchend", this.touchEnd, this)
-        node.on("touchmove", this.touchMove, this)
+        //node.on("touchend", this.touchEnd, this)
+        //node.on("touchmove", this.touchMove, this)
         //node.on("touchcancel", this.touchE, this)
     },   
 
@@ -102,12 +102,12 @@ cc.Class({
     moveLogic(x, y) {
         const puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
         , bottom = puzzle[`${x}, ${y}`]
-        console.log('x: ', x, 'y: ', y)
-        console.log(bottom)
+        //console.log('x: ', x, 'y: ', y)
+        //console.log(bottom)
 
         if (bottom && bottom.isEmpty) {
-            console.log(bottom)
-            console.log(this.targetPos)
+            //console.log(bottom)
+            //console.log(this.targetPos)
             this.targetPos = bottom.position
             return true
         } else {
@@ -118,7 +118,7 @@ cc.Class({
     moveObj(x, y, node, dt) {
         const diffX = this.targetPos.x - x
         ,diffY = this.targetPos.y - y
-        console.log('diffX: ', diffX, 'diffY: ', diffY)
+        //console.log('diffX: ', diffX, 'diffY: ', diffY)
         //node.x = node.x + dt 
         if (Math.abs(diffX) < 1) {        
             node.x = node.x + diffX 
@@ -155,7 +155,7 @@ cc.Class({
         if (timeChecked === '1') {
             let beforePosition = this.beforePosition
             , currentPosition = this.node.getPosition()
-            console.log('is moving: ', this.isMoving, !this.isMoving)
+            //console.log('is moving: ', this.isMoving, !this.isMoving)
             if (beforePosition.x === currentPosition.x && beforePosition.y === currentPosition.y && !this.isMoving) {                
         const aCell = 45
         , y1 = currentPosition.y - aCell
@@ -165,15 +165,15 @@ cc.Class({
                 this.isMoving = moveLogic(currentPosition.x, y1)
                 ||  moveLogic(x2, currentPosition.y)
                 ||  moveLogic(x3, currentPosition.y)
-                console.log(currentPosition.y, currentPosition.x)
+                //console.log(currentPosition.y, currentPosition.x)
             } else if(this.isMoving) {
                 const moveObj = this.moveObj
                 moveObj(currentPosition.x, currentPosition.y, this.node, dt)
             } else {                
-                console.log(beforePosition.x, currentPosition.x)
-                console.log(beforePosition.y, currentPosition.y)
-                console.log(beforePosition.x === currentPosition.x)
-                console.log(beforePosition.y === currentPosition.y)                
+                //console.log(beforePosition.x, currentPosition.x)
+                //console.log(beforePosition.y, currentPosition.y)
+                //console.log(beforePosition.x === currentPosition.x)
+                //console.log(beforePosition.y === currentPosition.y)                
                 this.beforePosition = currentPosition
                 
             }

@@ -14,6 +14,13 @@ cc.Class({
         default: null,
         type: cc.Prefab
     },
+    positionArray: {get () {
+        return this;
+    },
+    set (key, value) {
+        this.key = value;
+    }
+   },
     puzzle: {get () {
                  return this;
              },
@@ -22,9 +29,53 @@ cc.Class({
              }
             },
     width: 15
+    },    
+    
+    setEvent(node) {
+        node.on("touchend", this.touchEnd, this)
+        //node.on("touchmove", this.touchMove, this)
+        //node.on("touchcancel", this.touchE, this)
+    }, 
+    
+    touchEnd(e) {
+        const pos = e.getLocation()
+        , puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
+        let formerObj = []        
+        for (let [key, value] of Object.entries(puzzle)) {            
+            key = key.split(', ')
+            let [keyX, keyY] = key
+            keyX = parseInt(keyX)
+            keyY = parseInt(keyY)
+            console.log('key, value: ', key, value, 'former: ', formerObj)
+            if (formerObj.length > 0) {
+                const [formerX, formerY] = formerObj
+                , formerXSign = Math.sign(formerX)
+                ,formerYSign = Math.sign(formerY)
+                ,keyXSign = Math.sign(keyX)
+                ,keyYSign = Math.sign(keyY)
+                ,formerXAbs = Math.abs(formerX)
+                if (formerX < pos.x && keyX > pos.x && formerY < pos.y && keyY > pos.y 
+                    && formerXSign === keyXSign && formerYSign === keyYSign) {                    
+            var newPiece = cc.instantiate(this.puzzlePiece);
+            newPiece.setPosition(this.getNewPiecePosition(formerX, formerY));
+            this.node.addChild(newPiece);
+            console.log('new obj initiated')
+            return
+                } 
+                
+            }  
+                formerObj = [keyX, keyY]
+            
+        }
+        
+        //cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
+    //this.node.destroy();
+    //1 - 2
+    //
     },
 
     onLoad () {        
+        this.setEvent(this.node)
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = cc.v2 (0, -640);
         cc.director.getScheduler().setTimeScale(5)
