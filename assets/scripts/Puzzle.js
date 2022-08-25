@@ -43,20 +43,26 @@ cc.Class({
         for (let [key, value] of Object.entries(puzzle)) {            
             key = key.split(', ')
             let [keyX, keyY] = key            
-            keyX = parseInt(keyX)
-            keyY = parseInt(keyY)     
+            keyX = parseFloat(keyX)
+            keyY = parseFloat(keyY)     
             let lessX = keyX - 45
             , lessY = keyY - 45
-            if (keyX > pos.x && lessX < pos.x && keyY > pos.y && lessY < keyY) {                
+            //console.log(`less x, y : ${lessX}, ${lessY}`)
+            //console.log('puzzle of less x, y: ', puzzle[`${lessX}, ${lessY}`])
+            if (keyX > pos.x && lessX < pos.x && keyY > pos.y && lessY < keyY
+                //&& puzzle[`${ssX}, ${lessY}`]
+                ) {                
+                    if (!puzzle[`${keyX}, ${keyY}`].isEmpty) {console.log('Is not empty'); return;}                        
             var newPiece = cc.instantiate(this.puzzlePiece);
             console.log('key, value: ', key, value, 'position: ', pos, 'less X, y: ', lessX, lessY)
             console.log(newPiece)
-            newPiece.x = lessX
-            newPiece.y = lessY
-
+            newPiece.x = keyX
+            newPiece.y = keyY            
             //newPiece.setPosition(this.getNewPiecePosition(lessX, lessY));
             this.node.addChild(newPiece);
             console.log('new obj initiated')
+            puzzle[`${keyX}, ${keyY}`].isEmpty = false      
+            cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
             return
             }
 
