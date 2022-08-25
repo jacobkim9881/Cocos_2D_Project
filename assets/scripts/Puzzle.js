@@ -45,17 +45,25 @@ cc.Class({
             key = key.split(', ')
             let [keyX, keyY] = key
             keyX = parseInt(keyX)
-            keyY = parseInt(keyY)
-            console.log('key, value: ', key, value, 'former: ', formerObj)
+            keyY = parseInt(keyY)            
+            console.log('key, value: ', key, value, 'former: ', formerObj, 'position: ', pos)
             if (formerObj.length > 0) {
                 const [formerX, formerY] = formerObj
                 , formerXSign = Math.sign(formerX)
                 ,formerYSign = Math.sign(formerY)
                 ,keyXSign = Math.sign(keyX)
                 ,keyYSign = Math.sign(keyY)
+                ,posXSign = Math.sign(pos.x)
+                ,posYSign = Math.sign(pos.y)
                 ,formerXAbs = Math.abs(formerX)
+                ,formerYAbs = Math.abs(formerY)
+                ,keyXAbs = Math.abs(formerX)
+                ,keyYAbs = Math.abs(formerY)
                 if (formerX < pos.x && keyX > pos.x && formerY < pos.y && keyY > pos.y 
-                    && formerXSign === keyXSign && formerYSign === keyYSign) {                    
+                    //formerXAbs < pos.x && keyXAbs > pos.x && formerYAbs < pos.y && keyYAbs > pos.y 
+                    //&& formerXSign === keyXSign && formerYSign === keyYSign
+                    //&& formerXSign === posXSign && formerYSign === posYSign
+                    ) {                    
             var newPiece = cc.instantiate(this.puzzlePiece);
             newPiece.setPosition(this.getNewPiecePosition(formerX, formerY));
             this.node.addChild(newPiece);
