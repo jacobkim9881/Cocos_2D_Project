@@ -40,39 +40,28 @@ cc.Class({
     touchEnd(e) {
         const pos = e.getLocation()
         , puzzle = JSON.parse(cc.sys.localStorage.getItem('puzzle')) 
-        let formerObj = []        
         for (let [key, value] of Object.entries(puzzle)) {            
             key = key.split(', ')
-            let [keyX, keyY] = key
+            let [keyX, keyY] = key            
             keyX = parseInt(keyX)
-            keyY = parseInt(keyY)            
-            console.log('key, value: ', key, value, 'former: ', formerObj, 'position: ', pos)
-            if (formerObj.length > 0) {
-                const [formerX, formerY] = formerObj
-                , formerXSign = Math.sign(formerX)
-                ,formerYSign = Math.sign(formerY)
-                ,keyXSign = Math.sign(keyX)
-                ,keyYSign = Math.sign(keyY)
-                ,posXSign = Math.sign(pos.x)
-                ,posYSign = Math.sign(pos.y)
-                ,formerXAbs = Math.abs(formerX)
-                ,formerYAbs = Math.abs(formerY)
-                ,keyXAbs = Math.abs(formerX)
-                ,keyYAbs = Math.abs(formerY)
-                if (formerX < pos.x && keyX > pos.x && formerY < pos.y && keyY > pos.y 
-                    //formerXAbs < pos.x && keyXAbs > pos.x && formerYAbs < pos.y && keyYAbs > pos.y 
-                    //&& formerXSign === keyXSign && formerYSign === keyYSign
-                    //&& formerXSign === posXSign && formerYSign === posYSign
-                    ) {                    
+            keyY = parseInt(keyY)     
+            let lessX = keyX - 45
+            , lessY = keyY - 45
+            if (keyX > pos.x && lessX < pos.x && keyY > pos.y && lessY < keyY) {                
             var newPiece = cc.instantiate(this.puzzlePiece);
-            newPiece.setPosition(this.getNewPiecePosition(formerX, formerY));
+            console.log('key, value: ', key, value, 'position: ', pos, 'less X, y: ', lessX, lessY)
+            console.log(newPiece)
+            newPiece.x = lessX
+            newPiece.y = lessY
+
+            //newPiece.setPosition(this.getNewPiecePosition(lessX, lessY));
             this.node.addChild(newPiece);
             console.log('new obj initiated')
             return
-                } 
-                
-            }  
-                formerObj = [keyX, keyY]
+            }
+
+            
+
             
         }
         
