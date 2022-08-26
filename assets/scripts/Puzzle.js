@@ -29,6 +29,8 @@ cc.Class({
              }
             },
     width: 15
+    , left: 180
+    , top: 360
     },    
     
     setEvent(node) {
@@ -45,8 +47,10 @@ cc.Class({
             let [keyX, keyY] = key            
             keyX = parseFloat(keyX)
             keyY = parseFloat(keyY)     
-            let lessX = keyX - 45
+            const lessX = keyX - 45
             , lessY = keyY - 45
+            , {left, top, width} = this
+            
             //console.log(`less x, y : ${lessX}, ${lessY}`)
             //console.log('puzzle of less x, y: ', puzzle[`${lessX}, ${lessY}`])
             if (keyX > pos.x && lessX < pos.x && keyY > pos.y && lessY < keyY
@@ -56,10 +60,11 @@ cc.Class({
             var newPiece = cc.instantiate(this.puzzlePiece);
             console.log('key, value: ', key, value, 'position: ', pos, 'less X, y: ', lessX, lessY)
             console.log(newPiece)
-            newPiece.x = keyX
-            newPiece.y = keyY            
+            newPiece.x = keyX - left - width/2
+            newPiece.y = keyY - top - width/2
             //newPiece.setPosition(this.getNewPiecePosition(lessX, lessY));
             this.node.addChild(newPiece);
+            console.log('x, y: ', newPiece.x, newPiece.y)
             console.log('new obj initiated')
             puzzle[`${keyX}, ${keyY}`].isEmpty = false      
             cc.sys.localStorage.setItem('puzzle', JSON.stringify(puzzle))
@@ -86,10 +91,12 @@ cc.Class({
         , puzzle = {}
         console.log(typeof width)
         let num = 0
+        const left = this.left
+        , top = this.top
         for(let i = -4; i < 4; i++) {
             for(let j = -7; j < 10; j++) {
-            let x = i * width + width/2
-            , y = j * width + width/2     
+            let x = i * width + width/2 + left
+            , y = j * width + width/2 + top 
             //var newPiece = cc.instantiate(this.puzzlePiece);
             //newPiece.setPosition(this.getNewPiecePosition(x, y));
             //this.node.addChild(newPiece);
