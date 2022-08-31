@@ -95,7 +95,7 @@ cc.Class({
         , top = this.top
         for(let i = -4; i < 4; i++) {
             for(let j = -7; j < 10; j++) {
-            let x = i * width + width/2 + left
+            let x = i * width + width/2 + left // -280 for map maker
             , y = j * width + width/2 + top 
             //var newPiece = cc.instantiate(this.puzzlePiece);
             //newPiece.setPosition(this.getNewPiecePosition(x, y));
