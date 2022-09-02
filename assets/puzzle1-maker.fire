@@ -1928,6 +1928,8 @@
     "width": 45,
     "left": 180,
     "top": 360,
+    "menuWidth": 240,
+    "isMenu": true,
     "_id": "2b8NSxbBRPzrBRbQvgrPOM"
   }
 ]

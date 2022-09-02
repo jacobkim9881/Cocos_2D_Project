@@ -31,6 +31,8 @@ cc.Class({
     width: 15
     , left: 180
     , top: 360
+    , menuWidth: 240
+    , isMenu: false
     },    
     
     setEvent(node) {
@@ -49,8 +51,8 @@ cc.Class({
             keyY = parseFloat(keyY)     
             const lessX = keyX - 45
             , lessY = keyY - 45
-            , {left, top, width} = this
-            
+            , {left, top, width, menuWidth, isMenu} = this
+            , menuWidthTouch = isMenu ? 215 : 0
             //console.log(`less x, y : ${lessX}, ${lessY}`)
             //console.log('puzzle of less x, y: ', puzzle[`${lessX}, ${lessY}`])
             if (keyX > pos.x && lessX < pos.x && keyY > pos.y && lessY < keyY
@@ -60,8 +62,8 @@ cc.Class({
             var newPiece = cc.instantiate(this.puzzlePiece);
             console.log('key, value: ', key, value, 'position: ', pos, 'less X, y: ', lessX, lessY)
             console.log(newPiece)
-            newPiece.x = keyX - left - width/2
-            newPiece.y = keyY - top - width/2
+            newPiece.x = keyX - left - width/2 - menuWidthTouch //- menuWidth - width/2 - 7
+            newPiece.y = keyY - top - width/2            
             //newPiece.setPosition(this.getNewPiecePosition(lessX, lessY));
             this.node.addChild(newPiece);
             console.log('x, y: ', newPiece.x, newPiece.y)
@@ -91,12 +93,13 @@ cc.Class({
         , puzzle = {}
         console.log(typeof width)
         let num = 0
-        const left = this.left
-        , top = this.top
+        const {left, top, menuWidth, isMenu} = this        
+        , menuWidthAdded = isMenu ? menuWidth : 0
         for(let i = -4; i < 4; i++) {
             for(let j = -7; j < 10; j++) {
-            let x = i * width + width/2 + left // -280 for map maker
+            let x = i * width + width/2 + left + menuWidthAdded
             , y = j * width + width/2 + top 
+            if (i === -4 && j === -7) console.log(x)
             //var newPiece = cc.instantiate(this.puzzlePiece);
             //newPiece.setPosition(this.getNewPiecePosition(x, y));
             //this.node.addChild(newPiece);
